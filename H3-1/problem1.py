@@ -13,9 +13,15 @@ G_undirected = G_directed.to_undirected()
 largest_cc = max(nx.connected_components(G_undirected), key=len)
 G_largest = G_undirected.subgraph(largest_cc).copy()
 
+print(f"Number of nodes in the largest connected component: {G_largest.number_of_nodes()}")
+print(f"Number of edges in the largest connected component: {G_largest.number_of_edges()}")
+
 # Check basic information about the undirected largest component
 (num_nodes, num_edges) = (G_largest.number_of_nodes(), G_largest.number_of_edges())
 num_nodes, num_edges
+print(f"Number of nodes: {num_nodes}")
+print(f"Number of edges: {num_edges}")
+
 
 # Calculate centrality measures
 degree_centrality = nx.degree_centrality(G_largest)
@@ -66,6 +72,16 @@ median_betweenness = np.median(top_200_betweenness)
 std_dev_betweenness = np.std(top_200_betweenness)
 
 (mean_closeness, median_closeness, std_dev_closeness), (mean_betweenness, median_betweenness, std_dev_betweenness)
+
+print("Closeness Centrality Measures:")
+print(f"Mean: {mean_closeness}")
+print(f"Median: {median_closeness}")
+print(f"Standard Deviation: {std_dev_closeness}\n")
+
+print("Betweenness Centrality Measures:")
+print(f"Mean: {mean_betweenness}")
+print(f"Median: {median_betweenness}")
+print(f"Standard Deviation: {std_dev_betweenness}")
 
 
 # Conduct the triadic census
