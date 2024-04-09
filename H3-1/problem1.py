@@ -4,7 +4,7 @@ import numpy as np
 
 
 # Load the dataset into a directed graph
-G_directed = nx.read_edgelist('twitter_combined.txt', create_using=nx.DiGraph())
+G_directed = nx.read_edgelist('H3-1/twitter_combined.txt', create_using=nx.DiGraph())
 
 # Convert the directed graph to an undirected graph
 G_undirected = G_directed.to_undirected()
@@ -28,7 +28,7 @@ plt.hist(list(degree_centrality.values()), bins=50, color='blue')
 plt.title('Degree Centrality Histogram')
 plt.xlabel('Degree Centrality')
 plt.ylabel('Count')
-plt.savefig('degree_centrality_histogram.png')
+plt.savefig('H3-1/degree_centrality_histogram.png')
 plt.close()
 
 # Closeness Centrality Histogram
@@ -37,7 +37,7 @@ plt.hist(list(closeness_centrality.values()), bins=50, color='green')
 plt.title('Closeness Centrality Histogram')
 plt.xlabel('Closeness Centrality')
 plt.ylabel('Count')
-plt.savefig('closeness_centrality_histogram.png')
+plt.savefig('H3-1/closeness_centrality_histogram.png')
 plt.close()
 
 # Betweenness Centrality Histogram
@@ -46,7 +46,7 @@ plt.hist(list(betweenness_centrality.values()), bins=50, color='red')
 plt.title('Betweenness Centrality Histogram')
 plt.xlabel('Betweenness Centrality')
 plt.ylabel('Count')
-plt.savefig('betweenness_centrality_histogram.png')
+plt.savefig('H3-1/betweenness_centrality_histogram.png')
 plt.close()
 
 # Sort nodes by degree centrality and pick the top 200
@@ -66,3 +66,12 @@ median_betweenness = np.median(top_200_betweenness)
 std_dev_betweenness = np.std(top_200_betweenness)
 
 (mean_closeness, median_closeness, std_dev_closeness), (mean_betweenness, median_betweenness, std_dev_betweenness)
+
+
+# Conduct the triadic census
+triad_census = nx.algorithms.triads.triadic_census(G_directed)
+
+# Print the results
+print("Triadic Census Results:")
+for triad_type, count in triad_census.items():
+    print(f"{triad_type}: {count}")
