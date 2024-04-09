@@ -4,7 +4,7 @@ import numpy as np
 
 
 # Load the dataset into a directed graph
-G_directed = nx.read_edgelist('H3-1/twitter_combined.txt', create_using=nx.DiGraph())
+G_directed = nx.read_edgelist('twitter_combined.txt', create_using=nx.DiGraph())
 
 # Convert the directed graph to an undirected graph
 G_undirected = G_directed.to_undirected()
