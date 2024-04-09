@@ -24,27 +24,30 @@ betweenness_centrality = nx.betweenness_centrality(G_largest, normalized=True)
 
 # Degree Centrality Histogram
 plt.figure(figsize=(10, 7))
-plt.hist(degree_centrality.values(), bins=50)
+plt.hist(list(degree_centrality.values()), bins=50, color='blue')
 plt.title('Degree Centrality Histogram')
 plt.xlabel('Degree Centrality')
 plt.ylabel('Count')
-plt.show()
+plt.savefig('/home/jonathanpena/CS-4990-Special-Topics-on-Social-Computing/H3-1/degree_centrality_histogram.png')
+plt.close()
 
 # Closeness Centrality Histogram
 plt.figure(figsize=(10, 7))
-plt.hist(closeness_centrality.values(), bins=50)
+plt.hist(list(closeness_centrality.values()), bins=50, color='green')
 plt.title('Closeness Centrality Histogram')
 plt.xlabel('Closeness Centrality')
 plt.ylabel('Count')
-plt.show()
+plt.savefig('/home/jonathanpena/CS-4990-Special-Topics-on-Social-Computing/H3-1/closeness_centrality_histogram.png')
+plt.close()
 
 # Betweenness Centrality Histogram
 plt.figure(figsize=(10, 7))
-plt.hist(betweenness_centrality.values(), bins=50)
+plt.hist(list(betweenness_centrality.values()), bins=50, color='red')
 plt.title('Betweenness Centrality Histogram')
 plt.xlabel('Betweenness Centrality')
 plt.ylabel('Count')
-plt.show()
+plt.savefig('/home/jonathanpena/CS-4990-Special-Topics-on-Social-Computing/H3-1/betweenness_centrality_histogram.png')
+plt.close()
 
 # Sort nodes by degree centrality and pick the top 200
 top_200_nodes = sorted(degree_centrality, key=degree_centrality.get, reverse=True)[:200]
