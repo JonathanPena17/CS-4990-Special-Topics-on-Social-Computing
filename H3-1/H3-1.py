@@ -2,6 +2,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 
+##### Problem 1.1 #################################################################
 
 # Load the dataset into a directed graph
 G_directed = nx.read_edgelist('twitter_combined.txt', create_using=nx.DiGraph())
@@ -13,20 +14,12 @@ G_undirected = G_directed.to_undirected()
 largest_cc = max(nx.connected_components(G_undirected), key=len)
 G_largest = G_undirected.subgraph(largest_cc).copy()
 
-print(f"Number of nodes in the largest connected component: {G_largest.number_of_nodes()}")
-print(f"Number of edges in the largest connected component: {G_largest.number_of_edges()}")
-
-# Check basic information about the undirected largest component
-(num_nodes, num_edges) = (G_largest.number_of_nodes(), G_largest.number_of_edges())
-num_nodes, num_edges
-print(f"Number of nodes: {num_nodes}")
-print(f"Number of edges: {num_edges}")
-
-
 # Calculate centrality measures
 degree_centrality = nx.degree_centrality(G_largest)
 closeness_centrality = nx.closeness_centrality(G_largest)
 betweenness_centrality = nx.betweenness_centrality(G_largest, normalized=True)
+
+##### Problem 1.2 #################################################################
 
 # Degree Centrality Histogram
 plt.figure(figsize=(10, 7))
@@ -54,6 +47,8 @@ plt.xlabel('Betweenness Centrality')
 plt.ylabel('Count')
 plt.savefig('betweenness_centrality_histogram.png')
 plt.close()
+
+##### Problem 1.3 #################################################################
 
 # Sort nodes by degree centrality and pick the top 200
 top_200_nodes = sorted(degree_centrality, key=degree_centrality.get, reverse=True)[:200]
@@ -83,11 +78,10 @@ print(f"Mean: {mean_betweenness}")
 print(f"Median: {median_betweenness}")
 print(f"Standard Deviation: {std_dev_betweenness}")
 
+##### Problem 2 #################################################################
 
-# Conduct the triadic census
 triad_census = nx.algorithms.triads.triadic_census(G_directed)
 
-# Print the results
 print("Triadic Census Results:")
 for triad_type, count in triad_census.items():
     print(f"{triad_type}: {count}")
